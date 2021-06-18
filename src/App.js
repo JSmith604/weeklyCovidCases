@@ -5,25 +5,20 @@ import "./styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import blueCovid from "./blueCovid.jpeg";
 import canadaMap from "./canadaMap.png";
+import moment from "moment";
 
 /*
   Use the following API to display the number of covid cases by day for the last week
   https://opencovid.ca/api/
 */
 
-export default function App() {
-  //array of days for the last week used to make api call
 
-  const days = [
-    "2021-06-10",
-    "2021-06-11",
-    "2021-06-12",
-    "2021-06-13",
-    "2021-06-14",
-    "2021-06-15",
-    "2021-06-16",
-    "2021-06-17"
-  ];
+  export default function App() {
+    //Create an array of 7 items with 0-6 as indices to make the api call for the last week, then map through the array, subtracting each index (as days) from today, then transform it to moment day format.
+    const days = [...Array(7).keys()].map((i) =>
+      moment().subtract(i, "days").format("YYYY-MM-DD")
+    );
+  
 
   return (
     <div className="App-main">
